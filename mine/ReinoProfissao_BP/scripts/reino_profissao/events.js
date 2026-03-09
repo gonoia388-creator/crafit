@@ -22,6 +22,8 @@ import {
   PROFESSION_SELECTION_RESULT,
   showProfessionMenu,
 } from "./profession_menu.js";
+import { handleProfessionTierScriptEvent } from "./profession_progression.js";
+import { initializeProfessionGameplaySystem } from "./profession_effects.js";
 
 const EVENT_NAMESPACE = "reinos:";
 const STATE_SYNC_INTERVAL_TICKS = 20;
@@ -125,7 +127,7 @@ function getPlayerById(playerId) {
 }
 
 function stateFingerprint(state) {
-  return `${state.kingdomId ?? "-"}|${state.professionId ?? "-"}`;
+  return `${state.kingdomId ?? "-"}|${state.professionId ?? "-"}|${state.tierId ?? "-"}`;
 }
 
 function syncPlayer(player, force = false) {
@@ -562,6 +564,9 @@ function handleScriptEvent(eventData) {
       syncPlayer(player, true);
       break;
     default:
+      if (handleProfessionTierScriptEvent(player, action, value)) {
+        syncPlayer(player, true);
+      }
       break;
   }
 }
@@ -615,6 +620,7 @@ export function initializeKingdomProfessionSystem() {
   }
 
   initialized = true;
+  initializeProfessionGameplaySystem();
 
   world.afterEvents.playerSpawn.subscribe((eventData) => {
     const player = eventData.player;
@@ -665,3 +671,4 @@ export function initializeKingdomProfessionSystem() {
     }
   });
 }
+

@@ -1,6 +1,7 @@
 ﻿const TAG_PREFIXES = Object.freeze({
   kingdom: "rp:kingdom:",
   profession: "rp:profession:",
+  tier: "rp:tier:",
 });
 
 const NPC_TAG_PREFIXES = Object.freeze({
@@ -14,36 +15,58 @@ export const KINGDOMS = Object.freeze({
   nevoa: Object.freeze({ id: "nevoa", label: "Reino da Névoa", display: "Névoa" }),
 });
 
+export const PROFESSION_TIERS = Object.freeze({
+  aprendiz: Object.freeze({ id: "aprendiz", label: "Aprendiz", display: "Aprendiz" }),
+  profissional: Object.freeze({
+    id: "profissional",
+    label: "Profissional",
+    display: "Profissional",
+  }),
+  mestre: Object.freeze({ id: "mestre", label: "Mestre", display: "Mestre" }),
+});
+
+export const DEFAULT_PROFESSION_TIER_ID = PROFESSION_TIERS.aprendiz.id;
+
 export const PROFESSIONS = Object.freeze({
-  minerador: Object.freeze({
-    id: "minerador",
-    label: "Minerador do Reino",
-    display: "Minerador do Reino",
+  cacador: Object.freeze({
+    id: "cacador",
+    label: "Caçador Real",
+    display: "Caçador Real",
+  }),
+  alquimista: Object.freeze({
+    id: "alquimista",
+    label: "Alquimista do Reino",
+    display: "Alquimista do Reino",
+  }),
+  ferreiro_armas: Object.freeze({
+    id: "ferreiro_armas",
+    label: "Ferreiro de Armas",
+    display: "Ferreiro de Armas",
   }),
   lenhador: Object.freeze({
     id: "lenhador",
     label: "Lenhador da Coroa",
     display: "Lenhador da Coroa",
   }),
-  fazendeiro: Object.freeze({
-    id: "fazendeiro",
-    label: "Lavrador Real",
-    display: "Lavrador Real",
-  }),
-  pescador: Object.freeze({
-    id: "pescador",
-    label: "Pescador dos Rios",
-    display: "Pescador dos Rios",
+  minerador: Object.freeze({
+    id: "minerador",
+    label: "Minerador do Reino",
+    display: "Minerador do Reino",
   }),
   criador: Object.freeze({
     id: "criador",
     label: "Criador do Reino",
     display: "Criador do Reino",
   }),
-  ferreiro: Object.freeze({
-    id: "ferreiro",
-    label: "Ferreiro da Forja",
-    display: "Ferreiro da Forja",
+  lavrador: Object.freeze({
+    id: "lavrador",
+    label: "Lavrador Real",
+    display: "Lavrador Real",
+  }),
+  rei: Object.freeze({
+    id: "rei",
+    label: "Rei do Reino",
+    display: "Rei do Reino",
   }),
 });
 
@@ -81,7 +104,15 @@ function createAliasMap(catalog) {
 }
 
 const KINGDOM_ALIASES = createAliasMap(KINGDOMS);
-const PROFESSION_ALIASES = createAliasMap(PROFESSIONS);
+const PROFESSION_ALIASES = Object.freeze({
+  ...createAliasMap(PROFESSIONS),
+  fazendeiro: "lavrador",
+  ferreiro: "ferreiro_armas",
+});
+const PROFESSION_TIER_ALIASES = Object.freeze({
+  ...createAliasMap(PROFESSION_TIERS),
+  pro: "profissional",
+});
 
 export function resolveKingdomId(value) {
   const token = normalizeToken(value);
@@ -93,12 +124,21 @@ export function resolveProfessionId(value) {
   return PROFESSION_ALIASES[token];
 }
 
+export function resolveProfessionTierId(value) {
+  const token = normalizeToken(value);
+  return PROFESSION_TIER_ALIASES[token];
+}
+
 export function kingdomTagFor(kingdomId) {
   return `${TAG_PREFIXES.kingdom}${kingdomId}`;
 }
 
 export function professionTagFor(professionId) {
   return `${TAG_PREFIXES.profession}${professionId}`;
+}
+
+export function professionTierTagFor(tierId) {
+  return `${TAG_PREFIXES.tier}${tierId}`;
 }
 
 export const PROFESSION_NPC_TAG = "profissao_npc";

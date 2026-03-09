@@ -8,12 +8,14 @@ import {
 import { refreshPlayerDisplay } from "./display.js";
 
 const PROFESSION_MENU_ORDER = Object.freeze([
-  "minerador",
+  "cacador",
+  "alquimista",
+  "ferreiro_armas",
   "lenhador",
-  "fazendeiro",
-  "pescador",
+  "minerador",
   "criador",
-  "ferreiro",
+  "lavrador",
+  "rei",
 ]);
 
 const PROFESSION_LOCK_MESSAGE = "Você pode trocar de profissão quando quiser.";
@@ -239,4 +241,3 @@ export {
   PROFESSION_MENU_RESULT,
   PROFESSION_SELECTION_RESULT,
 };
-
