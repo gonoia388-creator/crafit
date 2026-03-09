@@ -1,0 +1,17 @@
+{
+  "format_version": 2,
+  "header": {
+    "name": "ReinoProfissao RP",
+    "description": "Resource Pack base para o add-on Reino e Profissao.",
+    "uuid": "5394ecf1-9dee-49af-8dbb-4a7f8e4e1c89",
+    "version": [1, 0, 0],
+    "min_engine_version": [1, 21, 110]
+  },
+  "modules": [
+    {
+      "type": "resources",
+      "uuid": "d3807023-09fe-4c77-87ff-59215e4a579e",
+      "version": [1, 0, 0]
+    }
+  ]
+}

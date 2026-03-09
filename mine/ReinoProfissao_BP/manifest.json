@@ -1,0 +1,58 @@
+{
+    "format_version":  2,
+    "header":  {
+                   "name":  "ReinoProfissao BP",
+                   "description":  "Sistema de reino e profissao persistente por jogador.",
+                   "uuid":  "ccdb0fe6-1252-4b99-bcdf-af433bf6b034",
+                   "version":  [
+                                   1,
+                                   0,
+                                   0
+                               ],
+                   "min_engine_version":  [
+                                              1,
+                                              21,
+                                              110
+                                          ]
+               },
+    "modules":  [
+                    {
+                        "type":  "data",
+                        "uuid":  "31de7a75-c9ed-4bf7-9cc6-20551384ec55",
+                        "version":  [
+                                        1,
+                                        0,
+                                        0
+                                    ]
+                    },
+                    {
+                        "type":  "script",
+                        "language":  "javascript",
+                        "entry":  "scripts/main.js",
+                        "uuid":  "3019028f-4d4c-4d9c-b6cf-df5af37495da",
+                        "version":  [
+                                        1,
+                                        0,
+                                        0
+                                    ]
+                    }
+                ],
+    "dependencies":  [
+                         {
+                             "module_name":  "@minecraft/server",
+                             "version":  "2.1.0"
+                         },
+                         {
+                             "module_name":  "@minecraft/server-ui",
+                             "version":  "2.0.0"
+                         },
+                         {
+                             "uuid":  "5394ecf1-9dee-49af-8dbb-4a7f8e4e1c89",
+                             "version":  [
+                                             1,
+                                             0,
+                                             0
+                                         ]
+                         }
+                     ]
+}
